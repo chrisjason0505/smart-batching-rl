@@ -39,7 +39,7 @@ Below are the performance metrics from our head-to-head battle between **IMPALA 
 
 Here is a snapshot of the AI operating under a high-load CDN scenario (1,000 requests per second).
 
-![Live Demo Snapshot](experiments/results/live_demo_snapshot.jpg)
+![Live Demo Snapshot](experiments/results/livebat.jpg)
 
 ### 💡 What are we seeing?
 1.  **Queue Size (Top Left)**: The AI is keeping the queue steady. It doesn't let it overflow, but it keeps enough "work" in the queue to make batches efficient.
