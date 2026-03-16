@@ -123,7 +123,7 @@ python -m experiments.run_experiment
 ```
 smart-batching/
 ├── agent/          reinforcement learning agents
-├── demo/           visualization tools
+├── demo/           visualizes live run in realtime
 ├── env/            request traffic simulator
 ├── experiments/    training runs and evaluation plots
 └── config.py       system parameters
