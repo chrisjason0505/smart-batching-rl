@@ -28,10 +28,10 @@ Below are the performance metrics from our head-to-head battle between **IMPALA 
 
 ![Comparison Graphs](experiments/results/impala_vs_ppo_comparison.png)
 
-### 🧐 Explaining the Graphs (For Simpletons)
-*   **The Big Blue Dip (Reward)**: You’ll notice the blue line (IMPALA) takes a massive dive early on. Don't panic! This is the AI "stress-testing" the system. It’s failing on purpose to learn where the "walls" are. Once it learns, it recovers rapidly.
-*   **Policy Loss**: Think of this as the AI's "Confusion Meter." The wild swings mean the AI is aggressively updating its strategy to find the perfect balance.
-*   **Throughput (The Bar Chart)**: This shows how many "scenarios" we can simulate per second. PPO and IMPALA are neck-and-neck here, with PPO slightly leading in this local run, but IMPALA's ability to handle *distributed* data makes it the winner for larger systems.
+### Graph Analysis
+*   **The Big Blue Dip (Reward)**: You’ll notice the blue line (IMPALA) takes a massive dive early on. This is the AI "stress-testing" the system. It’s failing on purpose to learn where the "walls" are. Once it learns, it recovers rapidly.
+*   **Policy Loss**: Think of this as the AI's way of finding its inner self... The wild swings mean the AI is aggressively updating its strategy to find the perfect balance.
+*   **Throughput (The Bar Chart)**: This shows how many "scenarios" we can simulate per second. PPO and IMPALA are neck-and-neck here, with PPO slightly leading in this local run, but IMPALA's ability to handle *distributed* data makes it the winner for larger systems and IMPALA also being economically more feasible..
 
 ---
 
@@ -42,9 +42,9 @@ Here is a snapshot of the AI operating under a high-load CDN scenario (1,000 req
 ![Live Demo Snapshot](experiments/results/livebat.jpg)
 
 ### 💡 What are we seeing?
-1.  **Queue Size (Top Left)**: The AI is keeping the queue steady. It doesn't let it overflow, but it keeps enough "work" in the queue to make batches efficient.
-2.  **Latency (Top Right)**: Watch the red line. It dances around the 500ms limit. The AI is playing a high-stakes game of "chicken"—waiting as long as possible to get a bigger batch without breaking the SLA.
-3.  **Actions (Bottom Right)**: The red dots are when the AI shouts **"SERVE!"**. Notice how it waits, waits, waits... then BOOM, serves a huge batch. This is exactly the behavior we want for high-efficiency infrastructure.
+1.  **Queue Size (Top Left)**: The Ai is keeping the queue steady. It doesn't let it overflow, but it keeps enough "work" in the queue to make batches efficient.
+2.  **Latency (Top Right)**: Watch the red line. It dances around the 500ms limit. The AI is playing a high-stakes game of request—waiting as long as possible to get a bigger batch without breaking the SLA.
+3.  **Actions (Bottom Right)**: The red dots are when the AI shouts **"SERVE!"**. Notice how it waits, waits, waits... then KAABOOM, serves a huge batch. This is exactly the behavior we want for high-efficiency infrastructure.
 
 ---
 
