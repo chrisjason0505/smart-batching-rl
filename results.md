@@ -1,6 +1,6 @@
 #  Results & Policy Analysis: The Power of IMPALA V3
 
-This document breaks down how our AI "brain" performed and explains the technical wizardry behind **IMPALA V3** in a way that doesn't require u to solve eigenvectors of a 32 X 32 matrix on spot.
+This document breaks down how our policy performed and explains the technical wizardry behind **IMPALA V3** in a way that doesn't require u to solve eigenvectors of a 32 X 32 matrix on spot.
 
 ---
 
@@ -22,7 +22,7 @@ To solve that lag, we use **V-Trace**. It’s a mathematical "safety net" that s
 
 ---
 
-## 📈 Analyzing the Results
+##  Analyzing the Results
 
 Below are the performance metrics from our head-to-head battle between **IMPALA V3** and the industry-standard **PPO**.
 
@@ -36,7 +36,7 @@ Below are the performance metrics from our head-to-head battle between **IMPALA 
 
 ---
 
-## 🎥 Real-Time Performance
+##  Real-Time Performance:)
 
 Here is a snapshot of the AI operating under a high-load CDN scenario (1,000 requests per second).
 
