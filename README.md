@@ -1,75 +1,140 @@
-#  Smart Batching: High-Speed RL Request Management
+# Smart Batching: High Speed RL Request Management
 
-A state-of-the-art Reinforcement Learning (RL) pipeline designed to solve one of the trickiest problems in modern infrastructure: **Dynamic Request Batching.**
+This project explores a reinforcement learning pipeline designed to handle a common infrastructure problem: **dynamic request batching**.
 
-
----
-## PROBLEM VISUALISATION
-
-Imagine you are a waiter in a busy restaurant. You have two ways to serve water:
-1.  **Immediate**: Every time someone asks for water, you run to the kitchen, fill one glass, and bring it back. (Fast service, but you’re exhausted and inefficient).
-2.  **Patient**: You wait until 10 people ask for water, then bring a large tray. (Very efficient, but the first person might be really thirsty and angry by the time you arrive).
-
-**Smart Batching** is an AI "manager" that watches the crowd, predicts how many more people are coming, and decides the *exact millisecond* to serve to keep everyone happy (low latency) while saving the most energy (high efficiency).
+Modern systems often receive requests at unpredictable rates. Processing every request immediately wastes compute resources, but waiting too long increases latency. The goal here is to learn a policy that decides **when to process requests and when to wait for more**, balancing efficiency and response time.
 
 ---
 
-##  How it Works (The Pipeline)
+## Understanding the Problem
 
-1.  **The Environment (`env/`)**: A high-fidelity simulator that mimics real-world traffic patterns (bursty spikes, steady streams, and "rush hours").
-2.  **The AI Agents (`agent/`)**:
-    *   **IMPALA V3 (Our Star Player)**: A distributed learning engine that can "think" about thousands of scenarios at once.
-    *   **PPO**: A reliable industry-standard agent used as a benchmark for comparison.
-3.  **The Brain (`config.py`)**: Central control where we set the rules—like the maximum allowed wait time (SLA) and the rewards for being efficient.
-4.  **The Lab (`experiments/`)**: Where we pit the agents against each other to see who performs better under pressure (1,000 requests per second!).
+Consider a system that processes incoming requests, like an API server or an inference service.
+
+There are two simple strategies.
+
+**Immediate processing**
+
+Every request is handled as soon as it arrives.
+Latency stays low, but the system performs many small operations which wastes resources.
+
+**Delayed batching**
+
+Requests are grouped together before processing.
+This is efficient for the system, but the first request in the batch might end up waiting too long.
+
+In practice the best approach lies somewhere in between. The system should adapt to traffic conditions and decide the best moment to process the queue.
+
+That decision is what the reinforcement learning agent learns.
 
 ---
 
-## Why IMPALA? (And why it's a "Fresh Option")
+## System Overview
 
-Traditionally, most people use **PPO** (Proximal Policy Optimisation) for these tasks. It's solid, but IMPALA (Importance Weighted Actor-Learner Architecture) can be used as an novel approach to solve this problem:
+The project is organized as a small pipeline where different components simulate traffic, train agents, and evaluate performance.
 
-*   ** Insane Speed**: IMPALA separates "Acting" (doing the task) from "Learning" (studying the data). This allows it to process data up to **2-3x faster** than PPO in high-throughput environments.
-*   ** Parallel Power**: While one part of the brain is studying, 8-16 "sub-brains" (actors) are simultaneously playing in the environment, bringing back diverse experiences.
-*   ** V-Trace Correction**: It uses a special mathematical trick called **V-Trace** to account for "lag" between the sub-brains and the main brain, ensuring the AI never learns bad habits from stale data.
+### Environment (`env/`)
+
+The environment simulates request traffic similar to what real systems see. It includes different patterns such as steady traffic, bursty spikes, and heavy load periods.
+
+The agent interacts with this environment and decides whether to process the current queue or wait for additional requests.
 
 ---
 
-## 🛠️ Quick Start
+### Agents (`agent/`)
 
-### 1. Installation
-Ensure you have the core tools:
-```powershell
+Two reinforcement learning agents are implemented.
+
+**IMPALA V3**
+
+The primary agent used in this project. It follows a distributed learning setup where multiple actors interact with the environment and send their experiences to a central learner.
+
+**PPO**
+
+Used as a baseline for comparison. PPO is widely used in reinforcement learning and provides a stable reference point.
+
+---
+
+### Configuration (`config.py`)
+
+This file defines the main system parameters, including:
+
+* maximum allowed waiting time for a request
+* reward structure for batching efficiency
+* penalties for excessive latency
+
+These parameters shape how the agent learns the batching policy.
+
+---
+
+### Experiments (`experiments/`)
+
+This module runs controlled experiments to compare different agents. It records metrics such as throughput, latency, and batching efficiency under high request loads.
+
+Typical experiments simulate traffic levels around **1000 requests per second**, where batching strategies start to make a noticeable difference.
+
+---
+
+## Why Explore IMPALA
+
+Many reinforcement learning implementations for control problems rely on PPO. In this project, IMPALA is explored as an alternative approach.
+
+IMPALA separates the **acting** and **learning** stages of training.
+
+Actors interact with the environment and generate experience, while the learner processes this data and updates the model. This allows many actors to run in parallel and collect a large amount of experience quickly.
+
+Because the environment can be explored simultaneously from multiple actors, the system learns from a broader range of situations.
+
+IMPALA also uses **V-trace correction**, which compensates for the delay between when experiences are generated by actors and when the learner updates the model. This helps maintain stable learning even in distributed setups.
+
+---
+
+## Installation
+
+Install the required dependencies:
+
+```bash
 pip install torch numpy matplotlib gymnasium
 ```
 
-### 2. Run the Live Demo (See it in Action!)
-This will open a visual dashboard showing the AI managing a live queue.
-```powershell
+---
+
+## Running the Demo
+
+Launch a simple visualization where the agent manages a request queue in real time.
+
+```bash
 python -m demo.live_demo
 ```
 
-### 3. Run a Fresh Experiment
-Compare IMPALA vs PPO and generate performance graphs.
-```powershell
+---
+
+## Running Experiments
+
+To train agents and generate performance comparisons between IMPALA and PPO:
+
+```bash
 python -m experiments.run_experiment
 ```
 
 ---
 
-## 📂 Project Structure (Minimalist)
+## Project Structure
 
-```text
+```
 smart-batching/
-├── agent/            # The AI Brains (IMPALA & PPO)
-├── demo/             # Visual dashboard & animations
-├── env/              # The traffic simulator
-├── experiments/      # Result tracking & training plots
-└── config.py         # The master controls
+├── agent/          reinforcement learning agents
+├── demo/           visualization tools
+├── env/            request traffic simulator
+├── experiments/    training runs and evaluation plots
+└── config.py       system parameters
 ```
 
 ---
 
-> [!TIP]
-> **Why use this for CDNs or APIs?**
-> By using this RL approach, you can reduce server costs by **20-30%** without breaching your customer Service Level Agreements (SLAs). It's more than just code; it's cost optimisation.
+## Practical Applications
+
+Systems that process large volumes of requests such as APIs, inference servers, and CDN edge services often rely on batching to improve efficiency.
+
+A learned batching policy can adapt to changing traffic conditions and reduce unnecessary compute usage while keeping latency within acceptable limits.
+
+In practice, approaches like this can lower infrastructure costs while still meeting service level requirements.
