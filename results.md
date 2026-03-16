@@ -44,8 +44,8 @@ Here is a snapshot of the AI operating under a high-load CDN scenario (1,000 req
 
 ### 💡 What are we seeing?
 1.  **Queue Size (Top Left)**: The Ai is keeping the queue steady. It doesn't let it overflow, but it keeps enough "work" in the queue to make batches efficient.
-2.  **Latency (Top Right)**: Watch the red line. It dances around the 500ms limit. The AI is playing a high-stakes game of request—waiting as long as possible to get a bigger batch without breaking the SLA.
-3.  **Actions (Bottom Right)**: The red dots are when the AI shouts **"SERVE!"**. Notice how it waits, waits, waits... then KAABOOM, serves a huge batch. This is exactly the behavior we want for high-efficiency infrastructure.
+2.  **Latency (Top Right)**: Watch the red line. It dances around the 500ms limit. Policy is playing a high-stakes game of request—waiting as long as possible to get a bigger batch without breaking the SLA.
+3.  **Actions (Bottom Right)**: The red dots are when our policy shouts **"SERVE!"**. Notice how it waits, waits, waits... then KAABOOM, serves a huge batch. This is exactly the behavior we want for high-efficiency infrastructure.
 
 ---
 
