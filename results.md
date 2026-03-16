@@ -26,7 +26,7 @@ To solve that lag, we use **V-Trace**. It’s a mathematical "safety net" that s
 
 Below are the performance metrics from our head-to-head battle between **IMPALA V3** and the industry-standard **PPO**.
 
-![Comparison Graphs](file:///C:/Users/meekg/Downloads/smart-batching/smart-batching-rl/experiments/results/impala_vs_ppo_comparison.png)
+![Comparison Graphs](experiments/results/impala_vs_ppo_comparison.png)
 
 ### 🧐 Explaining the Graphs (For Simpletons)
 *   **The Big Blue Dip (Reward)**: You’ll notice the blue line (IMPALA) takes a massive dive early on. Don't panic! This is the AI "stress-testing" the system. It’s failing on purpose to learn where the "walls" are. Once it learns, it recovers rapidly.
@@ -39,7 +39,7 @@ Below are the performance metrics from our head-to-head battle between **IMPALA 
 
 Here is a snapshot of the AI operating under a high-load CDN scenario (1,000 requests per second).
 
-![Live Demo Snapshot](file:///C:/Users/meekg/Downloads/smart-batching/smart-batching-rl/experiments/results/Screenshot%202026-03-16%20110521.jpg)
+![Live Demo Snapshot](experiments/results/live_demo_snapshot.jpg)
 
 ### 💡 What are we seeing?
 1.  **Queue Size (Top Left)**: The AI is keeping the queue steady. It doesn't let it overflow, but it keeps enough "work" in the queue to make batches efficient.
