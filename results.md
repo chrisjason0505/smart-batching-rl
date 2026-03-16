@@ -36,7 +36,7 @@ Below are the performance metrics from our head-to-head battle between **IMPALA 
 
 ---
 
-##  Real-Time Performance:)
+##  Real-Time Performance :)
 
 Here is a snapshot of the AI operating under a high-load CDN scenario (1,000 requests per second).
 
