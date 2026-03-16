@@ -29,9 +29,9 @@ Imagine you are a waiter in a busy restaurant. You have two ways to serve water:
 
 Traditionally, most people use **PPO** (Proximal Policy Optimisation) for these tasks. It's solid, but IMPALA (Importance Weighted Actor-Learner Architecture) can be used as an novel approach to solve this problem:
 
-*   **🏎️ Insane Speed**: IMPALA separates "Acting" (doing the task) from "Learning" (studying the data). This allows it to process data up to **2-3x faster** than PPO in high-throughput environments.
-*   **👯 Parallel Power**: While one part of the brain is studying, 8-16 "sub-brains" (actors) are simultaneously playing in the environment, bringing back diverse experiences.
-*   **🛡️ V-Trace Correction**: It uses a special mathematical trick called **V-Trace** to account for "lag" between the sub-brains and the main brain, ensuring the AI never learns bad habits from stale data.
+*   ** Insane Speed**: IMPALA separates "Acting" (doing the task) from "Learning" (studying the data). This allows it to process data up to **2-3x faster** than PPO in high-throughput environments.
+*   ** Parallel Power**: While one part of the brain is studying, 8-16 "sub-brains" (actors) are simultaneously playing in the environment, bringing back diverse experiences.
+*   ** V-Trace Correction**: It uses a special mathematical trick called **V-Trace** to account for "lag" between the sub-brains and the main brain, ensuring the AI never learns bad habits from stale data.
 
 ---
 
