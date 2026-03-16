@@ -1,6 +1,6 @@
 #  Results & Policy Analysis: The Power of IMPALA V3
 
-This document breaks down how our AI "brain" performed and explains the technical wizardry behind **IMPALA V3** in a way that doesn't require a Ph.D. in Mathematics.
+This document breaks down how our AI "brain" performed and explains the technical wizardry behind **IMPALA V3** in a way that doesn't require u to solve eigenvectors of a 32 X 32 matrix on spot.
 
 ---
 
