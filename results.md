@@ -31,7 +31,8 @@ Below are the performance metrics from our head-to-head battle between **IMPALA 
 ### Graph Analysis
 *   **The Big Blue Dip (Reward)**: You’ll notice the blue line (IMPALA) takes a massive dive early on. This is the AI "stress-testing" the system. It’s failing on purpose to learn where the "walls" are. Once it learns, it recovers rapidly.
 *   **Policy Loss**: Think of this as the AI's way of finding its inner self... The wild swings mean the AI is aggressively updating its strategy to find the perfect balance.
-*   **Throughput (The Bar Chart)**: This shows how many "scenarios" we can simulate per second. PPO and IMPALA are neck-and-neck here, with PPO slightly leading in this local run, but IMPALA's ability to handle *distributed* data makes it the winner for larger systems and IMPALA also being economically more feasible..
+*   **Throughput (The Bar Chart)**: This shows how many "scenarios" we can simulate per second. PPO and IMPALA are neck-and-neck here, with PPO slightly leading in this local run
+*    **IMPALA's ability to handle *distributed* data makes it the winner for larger systems and IMPALA also being economically more feasible.
 
 ---
 
